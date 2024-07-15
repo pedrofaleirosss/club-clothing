@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// Utilities
-import ICategory from "../../interfaces/ICategory";
-import env from "../../config/env.config";
+// Components
+import CategoryItem from "../CategoryItem/CategoryItem.component";
 
 // Styles
 import "./Categories.styles.css";
+
+// Utilities
+import ICategory from "../../interfaces/ICategory";
+import env from "../../config/env.config";
 
 const Categories = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -29,7 +32,13 @@ const Categories = () => {
 
   return (
     <div className="categories-container">
-      <div className="categories-content"></div>
+      <div className="categories-content">
+        {categories.map((category) => (
+          <div key={category.id}>
+            <CategoryItem category={category} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
