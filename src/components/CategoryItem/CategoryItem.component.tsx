@@ -2,7 +2,6 @@
 import ICategory from "../../interfaces/ICategory";
 
 // Styles
-import "./CategoryItem.styles.css";
 import { CategoryItemContainer, CategoryName } from "./CategoryItem.styles";
 
 interface CategoryItemProps {
