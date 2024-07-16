@@ -3,6 +3,7 @@ import ICategory from "../../interfaces/ICategory";
 
 // Styles
 import "./CategoryItem.styles.css";
+import { CategoryItemContainer, CategoryName } from "./CategoryItem.styles";
 
 interface CategoryItemProps {
   category: ICategory;
@@ -10,15 +11,12 @@ interface CategoryItemProps {
 
 const CategoryItem = ({ category }: CategoryItemProps) => {
   return (
-    <div
-      className="category-item-container"
-      style={{ backgroundImage: `url('${category.imageUrl}')` }}
-    >
-      <div className="category-name">
+    <CategoryItemContainer backgroundImage={category.imageUrl}>
+      <CategoryName>
         <p>{category.displayName}</p>
         <p>Explorar</p>
-      </div>
-    </div>
+      </CategoryName>
+    </CategoryItemContainer>
   );
 };
 
