@@ -6,6 +6,7 @@ import CategoryItem from "../CategoryItem/CategoryItem.component";
 
 // Styles
 import "./Categories.styles.css";
+import { CategoriesContainer, CategoriesContent } from "./Categories.styles";
 
 // Utilities
 import ICategory from "../../interfaces/ICategory";
@@ -31,15 +32,15 @@ const Categories = () => {
   }, []);
 
   return (
-    <div className="categories-container">
-      <div className="categories-content">
+    <CategoriesContainer>
+      <CategoriesContent>
         {categories.map((category) => (
           <div key={category.id}>
             <CategoryItem category={category} />
           </div>
         ))}
-      </div>
-    </div>
+      </CategoriesContent>
+    </CategoriesContainer>
   );
 };
 
