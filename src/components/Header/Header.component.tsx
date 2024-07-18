@@ -12,6 +12,10 @@ import {
 const Header = () => {
   const navigate = useNavigate();
 
+  const handleHomeClick = () => {
+    navigate("/");
+  };
+
   const handleLoginClick = () => {
     navigate("/login");
   };
@@ -22,7 +26,7 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <HeaderTitle>CLUB CLOTHING</HeaderTitle>
+      <HeaderTitle onClick={handleHomeClick}>CLUB CLOTHING</HeaderTitle>
 
       <HeaderItems>
         <HeaderItem>Explorar</HeaderItem>
