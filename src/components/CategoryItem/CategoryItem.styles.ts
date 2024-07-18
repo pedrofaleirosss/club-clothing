@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Colors from "../../theme/theme.colors";
 
 interface CategoryItemContainerProps {
-  backgroundImage: string;
+  $backgroundImage: string;
 }
 
 export const CategoryItemContainer = styled.div<CategoryItemContainerProps>`
@@ -19,7 +19,7 @@ export const CategoryItemContainer = styled.div<CategoryItemContainerProps>`
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
   background-color: rgba(0, 0, 0, 0.3);
   background-blend-mode: color;
-  background-image: ${(props) => `url('${props.backgroundImage}')`};
+  background-image: ${(props) => `url('${props.$backgroundImage}')`};
 `;
 
 export const CategoryName = styled.div`
