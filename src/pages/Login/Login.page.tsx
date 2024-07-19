@@ -2,6 +2,11 @@ import { BsGoogle } from "react-icons/bs";
 import { FiLogIn } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
+import {
+  AuthError,
+  AuthErrorCodes,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 // Components
 import CustomButton from "../../components/CustomButton/CustomButton.component";
@@ -18,6 +23,9 @@ import {
   LoginSubtitle,
 } from "./Login.styles";
 
+//Utilities
+import { auth } from "../../config/firebase.config";
+
 interface LoginForm {
   email: string;
   password: string;
@@ -27,11 +35,31 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<LoginForm>();
 
-  const handleSubmitPress = (data: any) => {
-    console.log({ data });
+  const handleSubmitPress = async (data: LoginForm) => {
+    try {
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+
+      console.log(userCredentials);
+    } catch (error) {
+      const _error = error as AuthError;
+
+      if (_error.code === AuthErrorCodes.TOO_MANY_ATTEMPTS_TRY_LATER) {
+        return setError("password", { type: "manyAttempts" });
+      }
+
+      if (_error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
+        setError("email", { type: "invalidCredentials" });
+        return setError("password", { type: "invalidCredentials" });
+      }
+    }
   };
 
   return (
@@ -71,6 +99,10 @@ const LoginPage = () => {
                 Por favor, insira um e-mail válido.
               </InputErrorMessage>
             )}
+
+            {errors?.email?.type === "invalidCredentials" && (
+              <InputErrorMessage>E-mail ou senha incorretos.</InputErrorMessage>
+            )}
           </LoginInputContainer>
 
           <LoginInputContainer>
@@ -85,6 +117,16 @@ const LoginPage = () => {
 
             {errors?.password?.type === "required" && (
               <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>
+            )}
+
+            {errors?.password?.type === "invalidCredentials" && (
+              <InputErrorMessage>E-mail ou senha incorretos.</InputErrorMessage>
+            )}
+
+            {errors?.password?.type === "manyAttempts" && (
+              <InputErrorMessage>
+                Muitas tentativas incorretas. Tente novamente mais tarde.
+              </InputErrorMessage>
             )}
           </LoginInputContainer>
 
