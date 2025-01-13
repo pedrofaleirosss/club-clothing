@@ -9,6 +9,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 
 // Components
 import CustomButton from "../../components/CustomButton/CustomButton.component";
@@ -27,6 +29,7 @@ import {
 
 //Utilities
 import { auth, db, googleProvider } from "../../config/firebase.config";
+import { UserContext } from "../../contexts/user.context";
 
 interface LoginForm {
   email: string;
@@ -40,6 +43,17 @@ const LoginPage = () => {
     setError,
     formState: { errors },
   } = useForm<LoginForm>();
+
+  const { isAuthenticated } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
 
   const handleSubmitPress = async (data: LoginForm) => {
     try {
