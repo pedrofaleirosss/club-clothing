@@ -6,6 +6,9 @@ import { Container } from "./categories-overview.styles";
 // Utilities
 import { CategoryContext } from "../../contexts/category.context";
 
+// Components
+import CategoryOverview from "../category-overview/category-overview.component";
+
 const CategoriesOverview = () => {
   const { categories, fetchCategories } = useContext(CategoryContext);
 
@@ -13,12 +16,13 @@ const CategoriesOverview = () => {
     if (categories.length === 0) {
       fetchCategories();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Container>
       {categories.map((category) => (
-        <p key={category.id}>{category.displayName}</p>
+        <CategoryOverview category={category} key={category.id} />
       ))}
     </Container>
   );
