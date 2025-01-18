@@ -1,5 +1,5 @@
 import Colors from "../../theme/theme.colors";
-import { LoadingContainer } from "./Loading.styles";
+import { LoadingContainer } from "./loading.styles";
 import { MoonLoader } from "react-spinners";
 
 const Loading = () => {

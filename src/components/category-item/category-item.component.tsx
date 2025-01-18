@@ -2,7 +2,7 @@
 import ICategory from "../../interfaces/ICategory";
 
 // Styles
-import { CategoryItemContainer, CategoryName } from "./CategoryItem.styles";
+import { CategoryItemContainer, CategoryName } from "./category-item.styles";
 
 interface CategoryItemProps {
   category: ICategory;

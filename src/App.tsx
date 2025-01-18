@@ -4,15 +4,15 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useContext, useState } from "react";
 
 // Pages
-import HomePage from "./pages/Home/Home.page";
-import LoginPage from "./pages/Login/Login.page";
-import SignUpPage from "./pages/SignUp/SignUp.page";
+import HomePage from "./pages/home/home.page";
+import LoginPage from "./pages/login/login.page";
+import SignUpPage from "./pages/sign-up/sign-up.page";
 
 // Utilities
 import { auth, db } from "./config/firebase.config";
 import { UserContext } from "./contexts/user.context";
 import { userConverter } from "./converters/firestore.converters";
-import Loading from "./components/Loading/Loading.component";
+import Loading from "./components/loading/loading.component";
 
 const App = () => {
   const [isInitializing, setIsInitializing] = useState(true);

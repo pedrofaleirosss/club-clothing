@@ -13,11 +13,11 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 
 // Components
-import CustomButton from "../../components/CustomButton/CustomButton.component";
-import Header from "../../components/Header/Header.component";
-import CustomInput from "../../components/CustomInput/CustomInput.component";
-import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage.component";
-import Loading from "../../components/Loading/Loading.component";
+import CustomButton from "../../components/custom-button/custom-button.component";
+import Header from "../../components/header/header.component";
+import CustomInput from "../../components/custom-input/custom-input.component";
+import InputErrorMessage from "../../components/input-error-message/input-error-message.component";
+import Loading from "../../components/loading/loading.component";
 
 // Styles
 import {
@@ -26,7 +26,7 @@ import {
   LoginHeadline,
   LoginInputContainer,
   LoginSubtitle,
-} from "./Login.styles";
+} from "./login.styles";
 
 //Utilities
 import { auth, db, googleProvider } from "../../config/firebase.config";

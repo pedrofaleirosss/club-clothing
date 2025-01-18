@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react";
 
 // Components
-import CategoryItem from "../CategoryItem/CategoryItem.component";
-import Loading from "../Loading/Loading.component";
+import CategoryItem from "../category-item/category-item.component";
+import Loading from "../loading/loading.component";
 
 // Styles
-import { CategoriesContainer, CategoriesContent } from "./Categories.styles";
+import { CategoriesContainer, CategoriesContent } from "./categories.styles";
 
 // Utilities
 import { CategoryContext } from "../../contexts/category.context";

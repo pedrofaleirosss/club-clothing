@@ -9,7 +9,7 @@ import {
   HeaderItem,
   HeaderItems,
   HeaderTitle,
-} from "./Header.styles";
+} from "./header.styles";
 
 // Utilities
 import { auth } from "../../config/firebase.config";
