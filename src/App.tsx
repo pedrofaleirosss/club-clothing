@@ -16,6 +16,7 @@ import { userConverter } from "./converters/firestore.converters";
 
 // Components
 import Loading from "./components/loading/loading.component";
+import CategoryDetailsPage from "./pages/category-details/category-details.page";
 
 const App = () => {
   const [isInitializing, setIsInitializing] = useState(true);
@@ -56,6 +57,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/category/:id" element={<CategoryDetailsPage />} />
       </Routes>
     </BrowserRouter>
   );
