@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useState } from "react";
-import IUser from "../interfaces/IUser";
+import IUser from "../interfaces/user";
 
 interface IUserContext {
   currentUser: IUser | null;

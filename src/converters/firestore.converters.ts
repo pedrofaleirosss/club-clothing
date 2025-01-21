@@ -3,8 +3,8 @@ import {
   QueryDocumentSnapshot,
   SnapshotOptions,
 } from "firebase/firestore";
-import ICategory from "../interfaces/ICategory";
-import IUser from "../interfaces/IUser";
+import ICategory from "../interfaces/category";
+import IUser from "../interfaces/user";
 
 export const categoryConverter = {
   toFirestore(category: ICategory): DocumentData {

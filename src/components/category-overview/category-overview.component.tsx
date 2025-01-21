@@ -6,7 +6,7 @@ import {
 } from "./category-overview.styles";
 
 // Utilities
-import ICategory from "../../interfaces/ICategory";
+import ICategory from "../../interfaces/category";
 
 // Components
 import ProductItem from "../product-item/product-item.component";

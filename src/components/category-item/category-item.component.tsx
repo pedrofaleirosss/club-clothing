@@ -1,6 +1,6 @@
 // Utilities
 import { useNavigate } from "react-router-dom";
-import ICategory from "../../interfaces/ICategory";
+import ICategory from "../../interfaces/category";
 
 // Styles
 import { CategoryItemContainer, CategoryName } from "./category-item.styles";

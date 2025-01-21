@@ -6,7 +6,7 @@ import {
 } from "./product-item.styles";
 
 // Utilities
-import IProduct from "../../interfaces/IProduct";
+import IProduct from "../../interfaces/products";
 
 interface ProductItemProps {
   product: IProduct;
