@@ -4,6 +4,7 @@ import { useContext } from "react";
 
 // Components
 import CustomButton from "../custom-button/custom-button.component";
+import CartItem from "../cart-item/cart-item.component";
 
 // Styles
 import {
@@ -19,7 +20,7 @@ import {
 import { CartContext } from "../../contexts/cart.context";
 
 const Cart = () => {
-  const { isVisible, toggleCart } = useContext(CartContext);
+  const { isVisible, products, toggleCart } = useContext(CartContext);
 
   return (
     <CartContainer isVisible={isVisible}>
@@ -32,7 +33,12 @@ const Cart = () => {
           </CartCloseIcon>
         </CartTitle>
 
+        {products.map((product) => (
+          <CartItem product={product} />
+        ))}
+
         <CartTotal>Total: R$999</CartTotal>
+
         <CustomButton startIcon={<BsCartCheck />}>
           Ir para o Checkout
         </CustomButton>
