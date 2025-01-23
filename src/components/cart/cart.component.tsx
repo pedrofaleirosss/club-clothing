@@ -20,7 +20,7 @@ import {
 import { CartContext } from "../../contexts/cart.context";
 
 const Cart = () => {
-  const { isVisible, products, productsTotalPrice, toggleCart } =
+  const { isVisible, products, productsTotalPrice, productsCount, toggleCart } =
     useContext(CartContext);
 
   return (
@@ -38,11 +38,17 @@ const Cart = () => {
           <CartItem product={product} />
         ))}
 
-        <CartTotal>Total: R${productsTotalPrice}</CartTotal>
+        {productsCount > 0 && (
+          <CartTotal>Total: R${productsTotalPrice}</CartTotal>
+        )}
 
-        <CustomButton startIcon={<BsCartCheck />}>
-          Ir para o Checkout
-        </CustomButton>
+        {productsCount > 0 && (
+          <CustomButton startIcon={<BsCartCheck />}>
+            Ir para o Checkout
+          </CustomButton>
+        )}
+
+        {productsCount === 0 && <p>Seu carrinho está vazio!</p>}
       </CartContent>
     </CartContainer>
   );
