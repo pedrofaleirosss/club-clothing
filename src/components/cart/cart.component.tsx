@@ -1,6 +1,7 @@
 import { BsCartCheck } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Components
 import CustomButton from "../custom-button/custom-button.component";
@@ -23,6 +24,12 @@ const Cart = () => {
   const { isVisible, products, productsTotalPrice, productsCount, toggleCart } =
     useContext(CartContext);
 
+  const navigate = useNavigate();
+
+  const handleGoToCheckoutClick = () => {
+    navigate("/checkout");
+    toggleCart();
+  };
   return (
     <CartContainer isVisible={isVisible}>
       <CartEscapeArea onClick={toggleCart} />
@@ -43,7 +50,10 @@ const Cart = () => {
         )}
 
         {productsCount > 0 && (
-          <CustomButton startIcon={<BsCartCheck />}>
+          <CustomButton
+            startIcon={<BsCartCheck />}
+            onClick={handleGoToCheckoutClick}
+          >
             Ir para o Checkout
           </CustomButton>
         )}
