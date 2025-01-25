@@ -43,9 +43,9 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
   }, []);
 
   useEffect(() => {
-    if (products.length > 0) {
+    setTimeout(() => {
       localStorage.setItem("cartProducts", JSON.stringify(products));
-    }
+    }, 0);
   }, [products]);
 
   const productsTotalPrice = useMemo(() => {
