@@ -16,6 +16,28 @@ export const CheckoutContainer = styled.div`
   button {
     width: 650px;
   }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: ${Colors.input.background};
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: ${Colors.text.dark};
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${Colors.text.dark};
+  }
 `;
 
 export const CheckoutTitle = styled.p`
@@ -28,26 +50,6 @@ export const CheckoutProducts = styled.div`
   overflow-y: scroll;
   margin-top: 15px;
   margin-bottom: 15px;
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: ${Colors.input.background};
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: ${Colors.text.dark};
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: ${Colors.text.dark};
-  }
 `;
 
 export const CheckoutTotal = styled.p`
