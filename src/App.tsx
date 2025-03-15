@@ -16,6 +16,7 @@ import PaymentConfirmationPage from "./pages/payment-confirmation/payment-confir
 // Utilities
 import { auth, db } from "./config/firebase.config";
 import { userConverter } from "./converters/firestore.converters";
+import { loginUser, logout } from "./store/reducers/user/user.actions";
 
 // Components
 import Loading from "./components/loading/loading.component";
@@ -35,7 +36,7 @@ const App = () => {
     onAuthStateChanged(auth, async (user) => {
       const isSigninOut = isAuthenticated && !user;
       if (isSigninOut) {
-        dispatch({ type: "LOGOUT_USER" });
+        dispatch(logout());
         return setIsInitializing(false);
       }
 
@@ -50,7 +51,7 @@ const App = () => {
 
         const userFromFirestore = querySnapshot.docs[0]?.data();
 
-        dispatch({ type: "LOGIN_USER", payload: userFromFirestore });
+        dispatch(loginUser(userFromFirestore));
 
         return setIsInitializing(false);
       }
