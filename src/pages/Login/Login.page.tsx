@@ -11,7 +11,6 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 // Components
 import CustomButton from "../../components/custom-button/custom-button.component";
@@ -31,6 +30,7 @@ import {
 
 //Utilities
 import { auth, db, googleProvider } from "../../config/firebase.config";
+import { useAppSelector } from "../../hooks/redux.hooks";
 
 interface LoginForm {
   email: string;
@@ -46,8 +46,8 @@ const LoginPage = () => {
   } = useForm<LoginForm>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const { isAuthenticated } = useSelector(
-    (rootReducer: any) => rootReducer.userReducer
+  const { isAuthenticated } = useAppSelector(
+    (rootReducer) => rootReducer.userReducer
   );
 
   const navigate = useNavigate();
