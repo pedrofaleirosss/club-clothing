@@ -2,6 +2,7 @@ import { BsCartCheck } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // Components
 import CustomButton from "../custom-button/custom-button.component";
@@ -19,24 +20,33 @@ import {
 
 // Utilities
 import { CartContext } from "../../contexts/cart.context";
+import { useAppSelector } from "../../hooks/redux.hooks";
+import { toggleCart } from "../../store/reducers/cart/cart.actions";
 
 const Cart = () => {
-  const { isVisible, products, productsTotalPrice, productsCount, toggleCart } =
-    useContext(CartContext);
+  const { isVisible, products } = useAppSelector((state) => state.cartReducer);
+  const { productsTotalPrice, productsCount } = useContext(CartContext);
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   const handleGoToCheckoutClick = () => {
     navigate("/checkout");
-    toggleCart();
+    dispatch(toggleCart());
   };
+
+  const handleCloseCartClick = () => {
+    dispatch(toggleCart());
+  };
+
   return (
     <CartContainer isVisible={isVisible}>
-      <CartEscapeArea onClick={toggleCart} />
+      <CartEscapeArea onClick={handleCloseCartClick} />
       <CartContent>
         <CartTitle>
           Seu Carrinho
-          <CartCloseIcon onClick={toggleCart}>
+          <CartCloseIcon onClick={handleCloseCartClick}>
             <IoClose size={24} />
           </CartCloseIcon>
         </CartTitle>

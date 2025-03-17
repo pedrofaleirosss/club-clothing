@@ -1,5 +1,5 @@
 import { BsCartPlus } from "react-icons/bs";
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
 
 // Components
 import CustomButton from "../custom-button/custom-button.component";
@@ -13,17 +13,17 @@ import {
 
 // Utilities
 import IProduct from "../../interfaces/products";
-import { CartContext } from "../../contexts/cart.context";
+import { addProductToCart } from "../../store/reducers/cart/cart.actions";
 
 interface ProductItemProps {
   product: IProduct;
 }
 
 const ProductItem = ({ product }: ProductItemProps) => {
-  const { addProductToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
 
   const handleAddToCartClick = () => {
-    addProductToCart(product);
+    dispatch(addProductToCart(product));
   };
 
   return (
