@@ -4,7 +4,8 @@ import {
   AiOutlineCloseCircle,
   AiOutlineHome,
 } from "react-icons/ai";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 // Styles
 import {
@@ -18,10 +19,10 @@ import CustomButton from "../../components/custom-button/custom-button.component
 
 // Utilities
 import Colors from "../../theme/theme.colors";
-import { CartContext } from "../../contexts/cart.context";
+import { clearCartProducts } from "../../store/reducers/cart/cart.actions";
 
 const PaymentConfirmationPage = () => {
-  const { clearProducts } = useContext(CartContext);
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
 
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const PaymentConfirmationPage = () => {
 
   useEffect(() => {
     if (status === "true") {
-      clearProducts();
+      dispatch(clearCartProducts());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
