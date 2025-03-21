@@ -8,6 +8,7 @@ import {
   increaseCartProductQuantity,
   removeProductFromCart,
 } from "../../store/reducers/cart/cart.actions";
+import { AppDispatch } from "../../store/store";
 
 // Styles
 import {
@@ -23,7 +24,7 @@ interface CartItemProps {
 }
 
 const CartItem = ({ product }: CartItemProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleRemoveClick = () => {
     dispatch(removeProductFromCart(product.id));

@@ -20,9 +20,10 @@ import CustomButton from "../../components/custom-button/custom-button.component
 // Utilities
 import Colors from "../../theme/theme.colors";
 import { clearCartProducts } from "../../store/reducers/cart/cart.actions";
+import { AppDispatch } from "../../store/store";
 
 const PaymentConfirmationPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [searchParams] = useSearchParams();
 
   const navigate = useNavigate();

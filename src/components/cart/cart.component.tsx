@@ -24,6 +24,7 @@ import {
   selectProductsCount,
   selectProductsTotalPrice,
 } from "../../store/reducers/cart/cart.selectors";
+import { AppDispatch } from "../../store/store";
 
 const Cart = () => {
   const { isVisible, products } = useAppSelector((state) => state.cartReducer);
@@ -33,7 +34,7 @@ const Cart = () => {
 
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleGoToCheckoutClick = () => {
     navigate("/checkout");

@@ -14,13 +14,14 @@ import {
 // Utilities
 import IProduct from "../../interfaces/products";
 import { addProductToCart } from "../../store/reducers/cart/cart.actions";
+import { AppDispatch } from "../../store/store";
 
 interface ProductItemProps {
   product: IProduct;
 }
 
 const ProductItem = ({ product }: ProductItemProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleAddToCartClick = () => {
     dispatch(addProductToCart(product));
