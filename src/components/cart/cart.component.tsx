@@ -46,7 +46,7 @@ const Cart = () => {
   };
 
   return (
-    <CartContainer isVisible={isVisible}>
+    <CartContainer $isVisible={isVisible}>
       <CartEscapeArea onClick={handleCloseCartClick} />
       <CartContent>
         <CartTitle>

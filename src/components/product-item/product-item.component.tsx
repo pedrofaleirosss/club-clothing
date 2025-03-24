@@ -29,7 +29,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
 
   return (
     <ProductContainer>
-      <ProductImage imageUrl={product.imageUrl}>
+      <ProductImage $imageUrl={product.imageUrl}>
         <CustomButton startIcon={<BsCartPlus />} onClick={handleAddToCartClick}>
           Adicionar ao carrinho
         </CustomButton>

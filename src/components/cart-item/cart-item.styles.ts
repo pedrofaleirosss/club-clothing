@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Colors from "../../theme/theme.colors";
 
 interface CartItemImageProps {
-  imageUrl: string;
+  $imageUrl: string;
 }
 
 export const CartItemContainer = styled.div`
@@ -16,7 +16,7 @@ export const CartItemContainer = styled.div`
 `;
 
 export const CartItemImage = styled.div<CartItemImageProps>`
-  background-image: ${(props) => `url('${props.imageUrl}')`};
+  background-image: ${(props) => `url('${props.$imageUrl}')`};
   height: 250px;
   width: 170px;
   background-size: cover;
