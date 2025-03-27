@@ -13,7 +13,7 @@ import {
 // Utilities
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase.config";
-import { logoutUser } from "../../store/reducers/user/user.actions";
+import { logoutUser } from "../../store/toolkit/user/user.slice";
 import { AppDispatch } from "../../store/store";
 import { toggleCart } from "../../store/reducers/cart/cart.actions";
 import { useAppSelector } from "../../hooks/redux.hooks";
