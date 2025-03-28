@@ -13,7 +13,7 @@ import {
 
 // Utilities
 import IProduct from "../../interfaces/products";
-import { addProductToCart } from "../../store/reducers/cart/cart.actions";
+import { addProductToCart } from "../../store/toolkit/cart/cart.slice";
 import { AppDispatch } from "../../store/store";
 
 interface ProductItemProps {

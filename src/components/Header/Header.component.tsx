@@ -15,7 +15,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase.config";
 import { logoutUser } from "../../store/toolkit/user/user.slice";
 import { AppDispatch } from "../../store/store";
-import { toggleCart } from "../../store/reducers/cart/cart.actions";
+import { toggleCart } from "../../store/toolkit/cart/cart.slice";
 import { useAppSelector } from "../../hooks/redux.hooks";
 import { selectProductsCount } from "../../store/reducers/cart/cart.selectors";
 

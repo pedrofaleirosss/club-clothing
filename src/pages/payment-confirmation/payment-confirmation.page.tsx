@@ -19,7 +19,7 @@ import CustomButton from "../../components/custom-button/custom-button.component
 
 // Utilities
 import Colors from "../../theme/theme.colors";
-import { clearCartProducts } from "../../store/reducers/cart/cart.actions";
+import { clearCartProducts } from "../../store/toolkit/cart/cart.slice";
 import { AppDispatch } from "../../store/store";
 
 const PaymentConfirmationPage = () => {
