@@ -92,4 +92,29 @@ describe("Cart", () => {
 
     screen.getByText("1");
   });
+
+  it("should remove product from cart on remove click", () => {
+    renderWithRedux(<Cart />, {
+      preloadedState: {
+        cartReducer: {
+          products: [
+            {
+              id: "1",
+              imageUrl: "image_url",
+              name: "Boné",
+              price: 100,
+              quantity: 2,
+            },
+          ],
+        },
+      },
+    } as any);
+
+    const removeButton = screen.getByLabelText(/remover boné do carrinho/i);
+
+    userEvent.click(removeButton);
+
+    expect(screen.queryByText(/boné/i)).toBeNull();
+    screen.getByText(/seu carrinho está vazio!/i);
+  });
 });
