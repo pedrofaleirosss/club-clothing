@@ -24,5 +24,19 @@ describe("Cart", () => {
     screen.getByText("R$100");
     screen.getByText("2");
     screen.getByText("Total: R$200");
+    screen.getByText(/ir para o checkout/i);
+  });
+
+  it("should not show checkout button and should show an empty message when cart is empty", () => {
+    renderWithRedux(<Cart />, {
+      preloadedState: {
+        cartReducer: {
+          products: [],
+        },
+      },
+    } as any);
+
+    screen.getByText(/seu carrinho está vazio!/i);
+    expect(screen.queryByText(/ir para o checkout/i)).toBeNull();
   });
 });
