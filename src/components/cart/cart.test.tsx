@@ -65,6 +65,7 @@ describe("Cart", () => {
     userEvent.click(increaseButton);
 
     screen.getByText("3");
+    screen.getByText("Total: R$300");
   });
 
   it("should decrease product quantity on decrease click", () => {
@@ -91,6 +92,7 @@ describe("Cart", () => {
     userEvent.click(decreaseButton);
 
     screen.getByText("1");
+    screen.getByText("Total: R$100");
   });
 
   it("should remove product from cart on remove click", () => {
