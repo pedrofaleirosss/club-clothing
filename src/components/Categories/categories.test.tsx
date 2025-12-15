@@ -9,7 +9,7 @@ describe("Categories", () => {
   it("should fetch and show categories", async () => {
     const mockedFirestore = firestore as any;
 
-    mockedFirestore.getDocs.mockReturnValue([
+    mockedFirestore.getDocs.mockImplementation(async () => [
       {
         data() {
           return {
@@ -20,9 +20,9 @@ describe("Categories", () => {
       },
     ]);
 
-    mockedFirestore.collection.mockReturnValue({
+    mockedFirestore.collection.mockImplementation(() => ({
       withConverter: () => {},
-    });
+    }));
 
     renderWithRedux(<Categories />, {});
 
