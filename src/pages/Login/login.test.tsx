@@ -14,4 +14,18 @@ describe("Login", () => {
     await screen.findByText(/o e-mail é obrigatório./i);
     screen.getByText(/a senha é obrigatória./i);
   });
+
+  it("should show error when email is invalid", async () => {
+    renderWithRedux(<LoginPage />, {});
+
+    const emailInput = screen.getByPlaceholderText("Digite seu e-mail");
+
+    userEvent.type(emailInput, "invalid-email");
+
+    const submitButton = screen.getByText("Entrar");
+
+    userEvent.click(submitButton);
+
+    await screen.findByText(/por favor, insira um e-mail válido./i);
+  });
 });
