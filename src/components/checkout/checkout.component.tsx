@@ -56,7 +56,7 @@ const Checkout = () => {
             ))}
           </CheckoutProducts>
 
-          <CheckoutTotal>R${productsTotalPrice}</CheckoutTotal>
+          <CheckoutTotal>Total: R${productsTotalPrice}</CheckoutTotal>
 
           <CustomButton
             startIcon={<BsBagCheck />}
