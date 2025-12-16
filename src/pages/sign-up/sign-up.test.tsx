@@ -3,6 +3,10 @@ import { renderWithRedux } from "../../helpers/test.helpers";
 import SignUpPage from "./sign-up.page";
 import userEvent from "@testing-library/user-event";
 
+import * as firebaseAuth from "firebase/auth";
+
+jest.mock("firebase/auth");
+
 describe("Sign Up", () => {
   it("should show error when trying to submit without filling all required fields", async () => {
     renderWithRedux(<SignUpPage />, {});
@@ -72,5 +76,37 @@ describe("Sign Up", () => {
     userEvent.click(submitButton);
 
     await screen.findByText(/a senha precisa ter no mínimo 6 caracteres./i);
+  });
+
+  it("should show error when email is already in use", async () => {
+    const mockFirebaseAuth = firebaseAuth as any;
+
+    renderWithRedux(<SignUpPage />, {});
+
+    mockFirebaseAuth.createUserWithEmailAndPassword.mockImplementation(() =>
+      Promise.reject({ code: firebaseAuth.AuthErrorCodes.EMAIL_EXISTS })
+    );
+
+    const nameInput = screen.getByPlaceholderText(/digite seu nome/i);
+    const surnameInput = screen.getByPlaceholderText(/digite seu sobrenome/i);
+    const emailInput = screen.getByPlaceholderText(/digite seu e-mail/i);
+    const passwordInput = screen.getByPlaceholderText("Digite sua senha");
+    const confirmPasswordInput = screen.getByPlaceholderText(
+      "Digite sua senha novamente"
+    );
+
+    userEvent.type(nameInput, "John");
+    userEvent.type(surnameInput, "Doe");
+    userEvent.type(emailInput, "test@example.com");
+    userEvent.type(passwordInput, "123456");
+    userEvent.type(confirmPasswordInput, "123456");
+
+    const submitButton = screen.getByText("Criar Conta", {
+      selector: "button",
+    });
+
+    userEvent.click(submitButton);
+
+    await screen.findByText(/este e-mail já extá sendo utilizado./i);
   });
 });
