@@ -57,4 +57,20 @@ describe("Sign Up", () => {
       /a confirmação de senha precisa ser igual a senha./i
     );
   });
+
+  it("should show error when password is less than 6 characters", async () => {
+    renderWithRedux(<SignUpPage />, {});
+
+    const passwordInput = screen.getByPlaceholderText("Digite sua senha");
+
+    userEvent.type(passwordInput, "123");
+
+    const submitButton = screen.getByText("Criar Conta", {
+      selector: "button",
+    });
+
+    userEvent.click(submitButton);
+
+    await screen.findByText(/a senha precisa ter no mínimo 6 caracteres./i);
+  });
 });
