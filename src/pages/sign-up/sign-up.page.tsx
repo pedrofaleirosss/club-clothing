@@ -189,7 +189,6 @@ const SignUpPage = () => {
               type="password"
               {...register("passwordConfirmation", {
                 required: true,
-                minLength: 6,
                 validate: (value) => {
                   return value === watchPassword;
                 },
@@ -205,12 +204,6 @@ const SignUpPage = () => {
             {errors?.passwordConfirmation?.type === "validate" && (
               <InputErrorMessage>
                 A confirmação de senha precisa ser igual a senha.
-              </InputErrorMessage>
-            )}
-
-            {errors?.passwordConfirmation?.type === "minLength" && (
-              <InputErrorMessage>
-                A confirmação de senha precisa ter no mínimo 6 caracteres.
               </InputErrorMessage>
             )}
           </SignUpInputContainer>
