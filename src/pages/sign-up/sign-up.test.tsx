@@ -35,4 +35,26 @@ describe("Sign Up", () => {
 
     await screen.findByText(/por favor, insira um e-mail válido./i);
   });
+
+  it("should show error when password and confirmation password do not match", async () => {
+    renderWithRedux(<SignUpPage />, {});
+
+    const passwordInput = screen.getByPlaceholderText("Digite sua senha");
+    const confirmPasswordInput = screen.getByPlaceholderText(
+      "Digite sua senha novamente"
+    );
+
+    userEvent.type(passwordInput, "12345678");
+    userEvent.type(confirmPasswordInput, "87654321");
+
+    const submitButton = screen.getByText("Criar Conta", {
+      selector: "button",
+    });
+
+    userEvent.click(submitButton);
+
+    await screen.findByText(
+      /a confirmação de senha precisa ser igual a senha./i
+    );
+  });
 });
