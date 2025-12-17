@@ -31,6 +31,7 @@ import {
 //Utilities
 import { auth, db, googleProvider } from "../../config/firebase.config";
 import { useAppSelector } from "../../hooks/redux.hooks";
+import Footer from "../../components/footer/footer.component";
 
 interface LoginForm {
   email: string;
@@ -198,6 +199,8 @@ const LoginPage = () => {
           </CustomButton>
         </LoginContent>
       </LoginContainer>
+
+      <Footer />
     </>
   );
 };

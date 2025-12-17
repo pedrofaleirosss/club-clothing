@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PaymentConfirmationContainer = styled.div`
-  height: 100%;
+  min-height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,5 +17,9 @@ export const PaymentConfirmationContent = styled.div`
     margin-bottom: 15px;
     font-size: 1.125rem;
     font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
   }
 `;

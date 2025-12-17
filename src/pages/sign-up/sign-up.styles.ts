@@ -2,10 +2,14 @@ import styled from "styled-components";
 import Colors from "../../theme/theme.colors";
 
 export const SignUpContainer = styled.div`
-  height: 100%;
+  min-height: calc(100vh - 64px);
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    min-height: calc(100vh - 114px);
+  }
 `;
 
 export const SignUpHeadline = styled.p`

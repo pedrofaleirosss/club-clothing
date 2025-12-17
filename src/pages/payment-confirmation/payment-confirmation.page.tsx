@@ -21,6 +21,7 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import Colors from "../../theme/theme.colors";
 import { clearCartProducts } from "../../store/toolkit/cart/cart.slice";
 import { AppDispatch } from "../../store/store";
+import Footer from "../../components/footer/footer.component";
 
 const PaymentConfirmationPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -72,6 +73,7 @@ const PaymentConfirmationPage = () => {
           </CustomButton>
         </PaymentConfirmationContent>
       </PaymentConfirmationContainer>
+      <Footer />
     </>
   );
 };

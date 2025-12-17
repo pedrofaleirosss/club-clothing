@@ -28,6 +28,7 @@ import {
 // Utilities
 import { auth, db } from "../../config/firebase.config";
 import { useAppSelector } from "../../hooks/redux.hooks";
+import Footer from "../../components/footer/footer.component";
 
 interface SignUpForm {
   firstName: string;
@@ -216,6 +217,8 @@ const SignUpPage = () => {
           </CustomButton>
         </SignUpContent>
       </SignUpContainer>
+
+      <Footer />
     </>
   );
 };

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Colors from "../../theme/theme.colors";
 
 export const CheckoutContainer = styled.div`
+  min-height: calc(100vh - 64px);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -22,6 +23,7 @@ export const CheckoutContainer = styled.div`
       width: 100%;
     }
 
+    min-height: calc(100vh - 114px);
     padding: 30px;
   }
 
