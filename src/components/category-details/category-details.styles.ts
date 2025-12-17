@@ -18,13 +18,23 @@ export const CategoryTitle = styled.div`
 export const ProductsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  justify-items: start;
-  margin-top: 5px;
+  justify-items: center;
+  margin-top: 20px;
   grid-row-gap: 20px;
+
+  @media (max-width: 1440px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
+    max-width: 300px;
+    margin: 20px auto 0px auto;
   }
 `;
 
