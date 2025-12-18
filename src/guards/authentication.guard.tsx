@@ -30,7 +30,7 @@ const AuthenticationGuard = ({ children }: AuthenticationProps) => {
     return (
       <>
         <Header />
-        <Loading message="Você precisa estar logado para acessar esta página. Você será recirecionado para o login em instantes."></Loading>
+        <Loading message="Você precisa estar logado para acessar esta página. Você será redirecionado para o login em instantes."></Loading>
       </>
     );
   }
