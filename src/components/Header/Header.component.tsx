@@ -46,6 +46,10 @@ const Header = () => {
     navigate("/explore");
   };
 
+  const handleAccountClick = () => {
+    navigate("/account");
+  };
+
   const handleSignOutClick = () => {
     dispatch(logoutUser());
     signOut(auth);
@@ -68,7 +72,10 @@ const Header = () => {
           </>
         )}
         {isAuthenticated && (
-          <HeaderItem onClick={handleSignOutClick}>Sair</HeaderItem>
+          <>
+            <HeaderItem onClick={handleAccountClick}>Minha Conta</HeaderItem>
+            <HeaderItem onClick={handleSignOutClick}>Sair</HeaderItem>
+          </>
         )}
         <HeaderItem onClick={handleCartClick}>
           <BsCart3 size={25} />

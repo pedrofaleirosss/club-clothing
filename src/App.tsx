@@ -24,6 +24,7 @@ import { useAppSelector } from "./hooks/redux.hooks";
 import Loading from "./components/loading/loading.component";
 import Cart from "./components/cart/cart.component";
 import AuthenticationGuard from "./guards/authentication.guard";
+import AccountPage from "./pages/account/account.page";
 
 const App = () => {
   const [isInitializing, setIsInitializing] = useState(true);
@@ -84,6 +85,14 @@ const App = () => {
         <Route
           path="/payment-confirmation"
           element={<PaymentConfirmationPage />}
+        />
+        <Route
+          path="/account"
+          element={
+            <AuthenticationGuard>
+              <AccountPage />
+            </AuthenticationGuard>
+          }
         />
       </Routes>
 
