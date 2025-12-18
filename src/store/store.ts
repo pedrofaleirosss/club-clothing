@@ -9,6 +9,15 @@ import persistReducer from "redux-persist/es/persistReducer";
 // @ts-ignore
 import persistStore from "redux-persist/es/persistStore";
 
+import {
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+
 import rootReducer from "./root-reducer";
 
 const persistConfig = {
@@ -17,15 +26,16 @@ const persistConfig = {
   whitelist: ["cartReducer"],
 };
 
-const persistedRootReducer: typeof rootReducer = persistReducer(
-  persistConfig,
-  rootReducer
-);
+const persistedRootReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedRootReducer,
   middleware: (getDefaultMiddleware) => {
-    const middlewares = getDefaultMiddleware().concat(thunk);
+    const middlewares = getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(thunk);
 
     // Uncomment the next line to enable logging in development mode
     // middlewares.push(logger);
