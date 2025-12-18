@@ -23,6 +23,7 @@ import Loading from "../../components/loading/loading.component";
 import {
   LoginContainer,
   LoginContent,
+  LoginFormContainer,
   LoginHeadline,
   LoginInputContainer,
   LoginSubtitle,
@@ -137,66 +138,71 @@ const LoginPage = () => {
 
           <LoginSubtitle>ou entre com o seu e-mail</LoginSubtitle>
 
-          <LoginInputContainer>
-            <p>E-mail</p>
+          <LoginFormContainer onSubmit={handleSubmit(handleSubmitPress)}>
+            <LoginInputContainer>
+              <p>E-mail</p>
 
-            <CustomInput
-              hasError={!!errors?.email}
-              placeholder="Digite seu e-mail"
-              {...register("email", {
-                required: true,
-                validate: (value) => {
-                  return isEmail(value);
-                },
-              })}
-            />
+              <CustomInput
+                hasError={!!errors?.email}
+                placeholder="Digite seu e-mail"
+                autoComplete="email"
+                {...register("email", {
+                  required: true,
+                  validate: (value) => {
+                    return isEmail(value);
+                  },
+                })}
+              />
 
-            {errors?.email?.type === "required" && (
-              <InputErrorMessage>O e-mail é obrigatório.</InputErrorMessage>
-            )}
+              {errors?.email?.type === "required" && (
+                <InputErrorMessage>O e-mail é obrigatório.</InputErrorMessage>
+              )}
 
-            {errors?.email?.type === "validate" && (
-              <InputErrorMessage>
-                Por favor, insira um e-mail válido.
-              </InputErrorMessage>
-            )}
+              {errors?.email?.type === "validate" && (
+                <InputErrorMessage>
+                  Por favor, insira um e-mail válido.
+                </InputErrorMessage>
+              )}
 
-            {errors?.email?.type === "invalidCredentials" && (
-              <InputErrorMessage>E-mail ou senha incorretos.</InputErrorMessage>
-            )}
-          </LoginInputContainer>
+              {errors?.email?.type === "invalidCredentials" && (
+                <InputErrorMessage>
+                  E-mail ou senha incorretos.
+                </InputErrorMessage>
+              )}
+            </LoginInputContainer>
 
-          <LoginInputContainer>
-            <p>Senha</p>
+            <LoginInputContainer>
+              <p>Senha</p>
 
-            <CustomInput
-              hasError={!!errors?.password}
-              placeholder="Digite sua senha"
-              type="password"
-              {...register("password", { required: true })}
-            />
+              <CustomInput
+                hasError={!!errors?.password}
+                placeholder="Digite sua senha"
+                type="password"
+                autoComplete="current-password"
+                {...register("password", { required: true })}
+              />
 
-            {errors?.password?.type === "required" && (
-              <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>
-            )}
+              {errors?.password?.type === "required" && (
+                <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>
+              )}
 
-            {errors?.password?.type === "invalidCredentials" && (
-              <InputErrorMessage>E-mail ou senha incorretos.</InputErrorMessage>
-            )}
+              {errors?.password?.type === "invalidCredentials" && (
+                <InputErrorMessage>
+                  E-mail ou senha incorretos.
+                </InputErrorMessage>
+              )}
 
-            {errors?.password?.type === "manyAttempts" && (
-              <InputErrorMessage>
-                Muitas tentativas incorretas. Tente novamente mais tarde.
-              </InputErrorMessage>
-            )}
-          </LoginInputContainer>
+              {errors?.password?.type === "manyAttempts" && (
+                <InputErrorMessage>
+                  Muitas tentativas incorretas. Tente novamente mais tarde.
+                </InputErrorMessage>
+              )}
+            </LoginInputContainer>
 
-          <CustomButton
-            startIcon={<FiLogIn size={18} />}
-            onClick={() => handleSubmit(handleSubmitPress)()}
-          >
-            Entrar
-          </CustomButton>
+            <CustomButton startIcon={<FiLogIn size={18} />} type="submit">
+              Entrar
+            </CustomButton>
+          </LoginFormContainer>
         </LoginContent>
       </LoginContainer>
 

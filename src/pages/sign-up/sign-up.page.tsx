@@ -96,7 +96,7 @@ const SignUpPage = () => {
       {isLoading && <Loading />}
 
       <SignUpContainer>
-        <SignUpContent>
+        <SignUpContent as="form" onSubmit={handleSubmit(handleSubmitPress)}>
           <SignUpHeadline>Crie sua conta</SignUpHeadline>
 
           <SignUpInputContainer>
@@ -134,6 +134,7 @@ const SignUpPage = () => {
             <CustomInput
               hasError={!!errors?.email}
               placeholder="Digite seu e-mail"
+              autoComplete="email"
               {...register("email", {
                 required: true,
                 validate: (value) => {
@@ -165,6 +166,7 @@ const SignUpPage = () => {
               hasError={!!errors?.password}
               placeholder="Digite sua senha"
               type="password"
+              autoComplete="new-password"
               {...register("password", {
                 required: true,
                 minLength: 6,
@@ -188,6 +190,7 @@ const SignUpPage = () => {
               hasError={!!errors?.passwordConfirmation}
               placeholder="Digite sua senha novamente"
               type="password"
+              autoComplete="new-password"
               {...register("passwordConfirmation", {
                 required: true,
                 validate: (value) => {
@@ -209,10 +212,7 @@ const SignUpPage = () => {
             )}
           </SignUpInputContainer>
 
-          <CustomButton
-            startIcon={<FiLogIn size={18} />}
-            onClick={() => handleSubmit(handleSubmitPress)()}
-          >
+          <CustomButton startIcon={<FiLogIn size={18} />} type="submit">
             Criar Conta
           </CustomButton>
         </SignUpContent>

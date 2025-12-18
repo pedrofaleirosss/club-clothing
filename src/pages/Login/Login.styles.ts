@@ -50,3 +50,7 @@ export const LoginInputContainer = styled.div`
     margin-bottom: 5px;
   }
 `;
+
+export const LoginFormContainer = styled.form`
+  width: 100%;
+`;
