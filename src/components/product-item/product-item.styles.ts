@@ -9,7 +9,7 @@ export const ProductContainer = styled.div`
   flex-direction: column;
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 300px;
   }
 `;
 

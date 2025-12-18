@@ -19,4 +19,8 @@ export const ProductsContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   row-gap: 20px;
+
+  @media (max-width: 680px) {
+    justify-content: center;
+  }
 `;
