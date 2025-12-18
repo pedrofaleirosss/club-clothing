@@ -33,6 +33,9 @@ import {
 import { auth, db, googleProvider } from "../../config/firebase.config";
 import { useAppSelector } from "../../hooks/redux.hooks";
 import Footer from "../../components/footer/footer.component";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../store/toolkit/user/user.slice";
+import IUser from "../../interfaces/user";
 
 interface LoginForm {
   email: string;
@@ -53,6 +56,7 @@ const LoginPage = () => {
   );
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -70,7 +74,20 @@ const LoginPage = () => {
         data.password
       );
 
-      console.log(userCredentials);
+      const querySnapshot = await getDocs(
+        query(
+          collection(db, "users"),
+          where("id", "==", userCredentials.user.uid)
+        )
+      );
+
+      const user = querySnapshot.docs[0]?.data();
+
+      if (!user) {
+        throw new Error("User not found in database.");
+      }
+
+      dispatch(loginUser(user as IUser));
     } catch (error) {
       const _error = error as AuthError;
 
@@ -99,19 +116,24 @@ const LoginPage = () => {
         )
       );
 
-      const user = querySnapshot.docs[0]?.data();
+      let user = querySnapshot.docs[0]?.data();
 
       if (!user) {
         const firstName = userCredentials.user.displayName?.split(" ")[0];
         const lastName = userCredentials.user.displayName?.split(" ")[1];
-        await addDoc(collection(db, "users"), {
+
+        user = {
           id: userCredentials.user.uid,
           email: userCredentials.user.email,
           firstName,
           lastName,
           provider: "google",
-        });
+        };
+
+        await addDoc(collection(db, "users"), user);
       }
+
+      dispatch(loginUser(user as IUser));
     } catch (error) {
       console.log(error);
     } finally {

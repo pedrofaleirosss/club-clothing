@@ -29,6 +29,9 @@ import {
 import { auth, db } from "../../config/firebase.config";
 import { useAppSelector } from "../../hooks/redux.hooks";
 import Footer from "../../components/footer/footer.component";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../store/toolkit/user/user.slice";
+import IUser from "../../interfaces/user";
 
 interface SignUpForm {
   firstName: string;
@@ -55,6 +58,7 @@ const SignUpPage = () => {
   );
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -71,13 +75,18 @@ const SignUpPage = () => {
         data.email,
         data.password
       );
-      await addDoc(collection(db, "users"), {
+
+      const user = {
         id: userCredentials.user.uid,
         email: userCredentials.user.email,
         firstName: data.firstName,
         lastName: data.lastName,
         provider: "firebase",
-      });
+      };
+
+      await addDoc(collection(db, "users"), user);
+
+      dispatch(loginUser(user as IUser));
     } catch (error) {
       const _error = error as AuthError;
 
