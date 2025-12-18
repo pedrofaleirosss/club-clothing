@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 import { thunk } from "redux-thunk";
 
 // @ts-ignore
@@ -24,8 +24,14 @@ const persistedRootReducer: typeof rootReducer = persistReducer(
 
 export const store = configureStore({
   reducer: persistedRootReducer,
-  middleware: (getDefaultMiddlewer) =>
-    getDefaultMiddlewer().concat(thunk, logger),
+  middleware: (getDefaultMiddleware) => {
+    const middlewares = getDefaultMiddleware().concat(thunk);
+
+    // Uncomment the next line to enable logging in development mode
+    // middlewares.push(logger);
+
+    return middlewares;
+  },
 });
 
 export const persistedStore = persistStore(store);
