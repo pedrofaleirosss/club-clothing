@@ -10,6 +10,11 @@ export const SignUpContainer = styled.div`
   @media (max-width: 768px) {
     min-height: calc(100vh - 114px);
   }
+
+  @media (max-height: 800px) {
+    min-height: auto;
+    padding: 40px 0;
+  }
 `;
 
 export const SignUpHeadline = styled.p`
