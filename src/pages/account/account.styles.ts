@@ -72,3 +72,86 @@ export const InfoItem = styled.div`
     font-size: 0.95rem;
   }
 `;
+
+/* Fundo escurecido */
+export const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(33, 37, 41, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`;
+
+/* Card */
+export const ModalContent = styled.div`
+  background: ${Colors.background.white};
+  width: 420px;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+
+  animation: fadeIn 0.2s ease-out;
+
+  @media (max-width: 768px) {
+    width: 90%;
+    padding: 24px;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
+export const ModalTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: ${Colors.text.dark};
+  margin-bottom: 12px;
+`;
+
+export const ModalDescription = styled.p`
+  font-size: 0.95rem;
+  color: ${Colors.text.dark};
+  line-height: 1.4;
+  margin-bottom: 20px;
+
+  strong {
+    color: ${Colors.error};
+  }
+`;
+
+/* Input alinhado ao resto do projeto */
+export const ModalInput = styled.input`
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 6px;
+  border: none;
+  background: ${Colors.input.background};
+  color: ${Colors.text.dark};
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+
+  &::placeholder {
+    color: ${Colors.input.placeholder};
+  }
+
+  &:focus {
+    outline: 2px solid ${Colors.primary};
+  }
+`;
+
+export const ModalActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+`;

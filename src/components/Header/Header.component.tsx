@@ -18,8 +18,12 @@ import { AppDispatch } from "../../store/store";
 import { toggleCart } from "../../store/toolkit/cart/cart.slice";
 import { useAppSelector } from "../../hooks/redux.hooks";
 import { selectProductsCount } from "../../store/reducers/cart/cart.selectors";
+import { useState } from "react";
+import ConfirmationModal from "../confirmation-modal/confirmation-modal.component";
 
 const Header = () => {
+  const [showSignOutModal, setShowSignOutModal] = useState(false);
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -53,6 +57,7 @@ const Header = () => {
   const handleSignOutClick = () => {
     dispatch(logoutUser());
     signOut(auth);
+    setShowSignOutModal(false);
   };
 
   const handleCartClick = () => {
@@ -74,7 +79,9 @@ const Header = () => {
         {isAuthenticated && (
           <>
             <HeaderItem onClick={handleAccountClick}>Minha Conta</HeaderItem>
-            <HeaderItem onClick={handleSignOutClick}>Sair</HeaderItem>
+            <HeaderItem onClick={() => setShowSignOutModal(true)}>
+              Sair
+            </HeaderItem>
           </>
         )}
         <HeaderItem onClick={handleCartClick}>
@@ -82,6 +89,15 @@ const Header = () => {
           <p style={{ marginLeft: 5 }}>{productsCount}</p>
         </HeaderItem>
       </HeaderItems>
+
+      <ConfirmationModal
+        isOpen={showSignOutModal}
+        title="Sair da conta"
+        description="Tem certeza de que deseja sair da sua conta?"
+        confirmText="Sair"
+        onConfirm={handleSignOutClick}
+        onCancel={() => setShowSignOutModal(false)}
+      />
     </HeaderContainer>
   );
 };
