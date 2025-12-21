@@ -22,6 +22,15 @@ export const CustomButtonContainer = styled.button`
     cursor: pointer;
     background-color: #000000;
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
 `;
 
 export const IconContainer = styled.div`
