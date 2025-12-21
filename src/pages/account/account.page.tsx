@@ -57,14 +57,16 @@ const AccountPage = () => {
             </InfoItem>
 
             <InfoItem>
-              <strong>E-mail</strong>
+              <strong>Email</strong>
               <span>{currentUser.email}</span>
             </InfoItem>
 
             <InfoItem>
-              <strong>Provedor</strong>
-              <span style={{ textTransform: "capitalize" }}>
-                {currentUser.provider}
+              <strong>Tipo de Login</strong>
+              <span>
+                {currentUser.provider === "firebase"
+                  ? "Email/Senha"
+                  : currentUser.provider === "google" && "Google"}
               </span>
             </InfoItem>
           </UserInfo>
