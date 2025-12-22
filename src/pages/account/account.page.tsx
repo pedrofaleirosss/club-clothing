@@ -21,6 +21,8 @@ import Header from "../../components/header/header.component";
 import Footer from "../../components/footer/footer.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import ConfirmationModal from "../../components/confirmation-modal/confirmation-modal.component";
+import InputErrorMessage from "../../components/input-error-message/input-error-message.component";
+import CustomInput from "../../components/custom-input/custom-input.component";
 
 // Styles
 import {
@@ -46,8 +48,6 @@ import { logoutUser } from "../../store/toolkit/user/user.slice";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import CustomInput from "../../components/custom-input/custom-input.component";
-import InputErrorMessage from "../../components/input-error-message/input-error-message.component";
 
 interface DeleteAccountForm {
   password: string;
@@ -56,8 +56,11 @@ interface DeleteAccountForm {
 const AccountPage = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isDeletingGoogle, setIsDeletingGoogle] = useState(false);
   const [showDeleteGoogleModal, setShowDeleteGoogleModal] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
+  const [deleteGoogleAccountErrorMessage, setDeleteGoogleAccountErrorMessage] =
+    useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -82,6 +85,8 @@ const AccountPage = () => {
 
   const handleDeleteAccountWithGoogle = async () => {
     try {
+      setIsDeletingGoogle(true);
+
       const user = auth.currentUser;
       if (!user) return;
 
@@ -102,14 +107,25 @@ const AccountPage = () => {
 
       dispatch(logoutUser());
 
+      setShowDeleteGoogleModal(false);
+
       navigate("/login");
     } catch (error: any) {
       if (error.code === "auth/requires-recent-login") {
-        alert("Por segurança, faça login novamente e tente de novo.");
+        setDeleteGoogleAccountErrorMessage(
+          "Por segurança, faça login novamente e tente de novo."
+        );
+      } else if (error.code === "auth/user-mismatch") {
+        setDeleteGoogleAccountErrorMessage("Conta inválida para essa ação.");
+      } else if (error.code === "auth/popup-closed-by-user") {
+        setDeleteGoogleAccountErrorMessage("A autenticação foi cancelada.");
       } else {
-        console.error(error);
-        alert("Erro ao excluir conta. Tente novamente.");
+        setDeleteGoogleAccountErrorMessage(
+          "Erro ao excluir conta. Tente novamente."
+        );
       }
+    } finally {
+      setIsDeletingGoogle(false);
     }
   };
 
@@ -301,12 +317,14 @@ const AccountPage = () => {
         title="Excluir conta"
         description="Essa ação é permanente e não pode ser desfeita."
         confirmText="Excluir conta"
-        isLoading={isDeleting}
+        isLoading={isDeletingGoogle}
         onConfirm={handleDeleteAccountWithGoogle}
         onCancel={() => {
+          setDeleteGoogleAccountErrorMessage("");
           setShowDeleteGoogleModal(false);
           return;
         }}
+        errorMessage={deleteGoogleAccountErrorMessage}
       />
 
       <ConfirmationModal

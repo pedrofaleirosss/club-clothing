@@ -6,6 +6,7 @@ import {
   ModalTitle,
   ModalDescription,
   ModalActions,
+  ErrorMessage,
 } from "./confirmation-modal.styles";
 
 interface ConfirmationModalProps {
@@ -18,6 +19,7 @@ interface ConfirmationModalProps {
   variant?: "danger" | "primary";
   onConfirm: () => void;
   onCancel: () => void;
+  errorMessage?: string;
 }
 
 const ConfirmationModal = ({
@@ -29,6 +31,7 @@ const ConfirmationModal = ({
   isLoading = false,
   onConfirm,
   onCancel,
+  errorMessage,
 }: ConfirmationModalProps) => {
   if (!isOpen) return null;
 
@@ -38,6 +41,8 @@ const ConfirmationModal = ({
         <ModalTitle>{title}</ModalTitle>
 
         <ModalDescription>{description}</ModalDescription>
+
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
 
         <ModalActions>
           <CustomButton onClick={onCancel}>{cancelText}</CustomButton>

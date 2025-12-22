@@ -48,13 +48,13 @@ export const ModalDescription = styled.p`
   font-size: 0.95rem;
   color: ${Colors.text.dark};
   line-height: 1.4;
-  margin-bottom: 28px;
 `;
 
 export const ModalActions = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 16px;
+  margin-top: 24px;
 `;
 
 export const CancelButton = styled.button`
@@ -87,4 +87,10 @@ export const ConfirmButton = styled.button<{ $variant: "danger" | "primary" }>`
   &:hover:not(:disabled) {
     opacity: 0.9;
   }
+`;
+
+export const ErrorMessage = styled.p`
+  color: ${Colors.error};
+  font-size: 18px;
+  margin: 16px 0;
 `;
