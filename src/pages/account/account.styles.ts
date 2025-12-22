@@ -10,6 +10,11 @@ export const AccountContainer = styled.div`
   @media (max-width: 768px) {
     min-height: calc(100vh - 114px);
   }
+
+  @media (max-height: 700px) {
+    min-height: auto;
+    padding: 40px 0;
+  }
 `;
 
 export const AccountContent = styled.div`
