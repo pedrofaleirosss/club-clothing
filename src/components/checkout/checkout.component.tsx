@@ -18,12 +18,14 @@ import Loading from "../loading/loading.component";
 // Utilities
 import { useAppSelector } from "../../hooks/redux.hooks";
 import { selectProductsTotalPrice } from "../../store/reducers/cart/cart.selectors";
+import MessageModal from "../message-modal/message-modal.component";
 
 const Checkout = () => {
   const { products } = useAppSelector((state) => state.cartReducer);
   const productsTotalPrice = useAppSelector(selectProductsTotalPrice);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState("");
 
   const handleFinishPurchaseClick = async () => {
     try {
@@ -36,8 +38,13 @@ const Checkout = () => {
       );
 
       window.location.href = data.url;
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      if (error.code === "ERR_NETWORK") {
+        setCheckoutError(
+          "Não foi possível conectar ao servidor de pagamento. Tente novamente em alguns instantes."
+        );
+        return;
+      }
     } finally {
       setIsLoading(false);
     }
@@ -68,6 +75,14 @@ const Checkout = () => {
       ) : (
         <p>Seu carrinho está vazio!</p>
       )}
+
+      <MessageModal
+        isOpen={!!checkoutError}
+        title="Erro no pagamento"
+        description={checkoutError}
+        variant="error"
+        onClose={() => setCheckoutError("")}
+      />
     </CheckoutContainer>
   );
 };
