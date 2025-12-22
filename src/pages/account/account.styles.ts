@@ -73,7 +73,6 @@ export const InfoItem = styled.div`
   }
 `;
 
-/* Fundo escurecido */
 export const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
@@ -84,7 +83,6 @@ export const ModalOverlay = styled.div`
   z-index: 1000;
 `;
 
-/* Card */
 export const ModalContent = styled.div`
   background: ${Colors.background.white};
   width: 420px;
@@ -129,29 +127,9 @@ export const ModalDescription = styled.p`
   }
 `;
 
-/* Input alinhado ao resto do projeto */
-export const ModalInput = styled.input`
-  width: 100%;
-  height: 44px;
-  padding: 0 14px;
-  border-radius: 6px;
-  border: none;
-  background: ${Colors.input.background};
-  color: ${Colors.text.dark};
-  font-size: 0.95rem;
-  margin-bottom: 24px;
-
-  &::placeholder {
-    color: ${Colors.input.placeholder};
-  }
-
-  &:focus {
-    outline: 2px solid ${Colors.primary};
-  }
-`;
-
 export const ModalActions = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 16px;
+  margin-top: 24px;
 `;

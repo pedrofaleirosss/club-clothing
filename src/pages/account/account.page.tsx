@@ -34,7 +34,6 @@ import {
   ModalContent,
   ModalTitle,
   ModalDescription,
-  ModalInput,
   ModalActions,
 } from "./account.styles";
 import Colors from "../../theme/theme.colors";
@@ -46,10 +45,16 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../../store/toolkit/user/user.slice";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import CustomInput from "../../components/custom-input/custom-input.component";
+import InputErrorMessage from "../../components/input-error-message/input-error-message.component";
+
+interface DeleteAccountForm {
+  password: string;
+}
 
 const AccountPage = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [password, setPassword] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteGoogleModal, setShowDeleteGoogleModal] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
@@ -57,6 +62,13 @@ const AccountPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { currentUser } = useAppSelector((state) => state.userReducer);
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<DeleteAccountForm>();
 
   if (!currentUser) return null;
 
@@ -73,12 +85,10 @@ const AccountPage = () => {
       const user = auth.currentUser;
       if (!user) return;
 
-      // 🔐 Reautenticar (Google)
       if (currentUser.provider === "google") {
         await reauthenticateWithPopup(user, googleProvider);
       }
 
-      // 🗑️ Remover usuário do Firestore
       const usersQuery = await getDocs(
         query(collection(db, "users"), where("id", "==", user.uid))
       );
@@ -88,10 +98,8 @@ const AccountPage = () => {
         await deleteDoc(doc(db, "users", userDoc.id));
       }
 
-      // 🗑️ Remover do Auth
       await deleteUser(user);
 
-      // 🧹 Limpar Redux
       dispatch(logoutUser());
 
       navigate("/login");
@@ -105,24 +113,19 @@ const AccountPage = () => {
     }
   };
 
-  const handleDeleteAccountWithPassword = async () => {
-    if (!password) {
-      alert("Informe sua senha para continuar.");
-      return;
-    }
-
+  const handleDeleteAccountWithPassword = async ({
+    password,
+  }: DeleteAccountForm) => {
     try {
       setIsDeleting(true);
 
       const user = auth.currentUser;
       if (!user || !user.email) return;
 
-      // 🔐 Reautenticação
       const credential = EmailAuthProvider.credential(user.email, password);
 
       await reauthenticateWithCredential(user, credential);
 
-      // 🗑️ Remover usuário do Firestore
       const usersQuery = await getDocs(
         query(collection(db, "users"), where("id", "==", user.uid))
       );
@@ -132,26 +135,26 @@ const AccountPage = () => {
         await deleteDoc(userDoc.ref);
       }
 
-      // 🗑️ Remover do Auth
       await deleteUser(user);
 
-      // 🧹 Limpar Redux
       dispatch(logoutUser());
+
+      setShowDeleteModal(false);
 
       navigate("/login");
     } catch (error: any) {
-      if (error.code === "auth/wrong-password") {
-        alert("Senha incorreta.");
+      if (
+        error.code === "auth/invalid-credential" ||
+        error.code === "auth/wrong-password"
+      ) {
+        setError("password", { type: "invalidPassword" });
       } else if (error.code === "auth/requires-recent-login") {
-        alert("Faça login novamente e tente de novo.");
+        setError("password", { type: "requiresRecentLogin" });
       } else {
-        console.error(error);
-        alert("Erro ao excluir conta.");
+        setError("password", { type: "unknown" });
       }
     } finally {
       setIsDeleting(false);
-      setPassword("");
-      setShowDeleteModal(false);
     }
   };
 
@@ -222,10 +225,7 @@ const AccountPage = () => {
         <ModalOverlay>
           <ModalContent
             as="form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleDeleteAccountWithPassword();
-            }}
+            onSubmit={handleSubmit(handleDeleteAccountWithPassword)}
           >
             <ModalTitle>Excluir conta</ModalTitle>
 
@@ -245,14 +245,36 @@ const AccountPage = () => {
               hidden
             />
 
-            <ModalInput
+            <CustomInput
+              hasError={!!errors?.password}
               type="password"
               placeholder="Digite sua senha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               autoFocus
               autoComplete="current-password"
+              {...register("password", {
+                required: true,
+              })}
             />
+
+            {errors?.password?.type === "required" && (
+              <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>
+            )}
+
+            {errors?.password?.type === "invalidPassword" && (
+              <InputErrorMessage>Senha incorreta.</InputErrorMessage>
+            )}
+
+            {errors?.password?.type === "requiresRecentLogin" && (
+              <InputErrorMessage>
+                Faça login novamente e tente de novo.
+              </InputErrorMessage>
+            )}
+
+            {errors?.password?.type === "unknown" && (
+              <InputErrorMessage>
+                Erro ao excluir conta. Tente novamente.
+              </InputErrorMessage>
+            )}
 
             <ModalActions>
               <CustomButton
