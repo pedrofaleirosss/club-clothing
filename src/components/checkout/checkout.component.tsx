@@ -40,11 +40,14 @@ const Checkout = () => {
       window.location.href = data.url;
     } catch (error: any) {
       if (error.code === "ERR_NETWORK") {
-        setCheckoutError(
+        return setCheckoutError(
           "Não foi possível conectar ao servidor de pagamento. Tente novamente em alguns instantes."
         );
-        return;
       }
+
+      setCheckoutError(
+        "Ocorreu um erro ao processar o pagamento. Tente novamente."
+      );
     } finally {
       setIsLoading(false);
     }
