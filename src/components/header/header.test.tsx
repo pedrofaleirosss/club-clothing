@@ -4,12 +4,13 @@ import { renderWithRedux } from "../../helpers/test.helpers";
 import ICartProduct from "../../interfaces/cart";
 
 describe("Header", () => {
-  it("should show sign out button when user is authenticated", () => {
+  it("should show sign out button and my account button when user is authenticated", () => {
     renderWithRedux(<Header />, {
       preloadedState: { userReducer: { isAuthenticated: true } },
     } as any);
 
     screen.getByText("Sair");
+    screen.getByText(/minha conta/i);
   });
 
   it("should show sign in and sign up buttons when user is not authenticated", () => {
