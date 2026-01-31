@@ -25,6 +25,13 @@ const MessageModal = ({
 }: MessageModalProps) => {
   if (!isOpen) return null;
 
+  const backgroundButtonColor =
+    variant === "error"
+      ? Colors.error
+      : variant === "success"
+        ? Colors.success
+        : Colors.primary;
+
   return (
     <Overlay>
       <ModalCard $variant={variant}>
@@ -35,7 +42,10 @@ const MessageModal = ({
         <ModalActions>
           <CustomButton
             onClick={onClose}
-            style={{ backgroundColor: Colors.error, color: Colors.text.white }}
+            style={{
+              backgroundColor: backgroundButtonColor,
+              color: Colors.text.white,
+            }}
           >
             Entendi
           </CustomButton>
