@@ -46,4 +46,12 @@ describe("Header", () => {
 
     screen.getByText("5");
   });
+
+  it("should show 0 when cart is empty", () => {
+    renderWithRedux(<Header />, {
+      preloadedState: { cartReducer: { products: [] } },
+    } as any);
+
+    screen.getByText("0");
+  });
 });

@@ -8,15 +8,15 @@ describe("Footer", () => {
     expect(screen.getByText(/club clothing/i)).toBeInTheDocument();
 
     expect(
-      screen.getByText(/todos os direitos reservados/i)
+      screen.getByText(/todos os direitos reservados/i),
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(/desenvolvido por pedro faleiros/i)
+      screen.getByText(/desenvolvido por pedro faleiros/i),
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(new RegExp(`${new Date().getFullYear()}`))
+      screen.getByText(new RegExp(`${new Date().getFullYear()}`)),
     ).toBeInTheDocument();
   });
 });
