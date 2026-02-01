@@ -13,7 +13,10 @@ import {
 
 // Utilities
 import IProduct from "../../interfaces/products";
-import { addProductToCart } from "../../store/toolkit/cart/cart.slice";
+import {
+  addProductToCart,
+  toggleCart,
+} from "../../store/toolkit/cart/cart.slice";
 import { AppDispatch } from "../../store/store";
 
 interface ProductItemProps {
@@ -25,6 +28,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
 
   const handleAddToCartClick = () => {
     dispatch(addProductToCart(product));
+    dispatch(toggleCart());
   };
 
   return (
