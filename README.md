@@ -1,46 +1,164 @@
-# Getting Started with Create React App
+# 🛍️ Club Clothing — E-commerce React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-18-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue)
+![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange)
+![Redux](https://img.shields.io/badge/Redux-Toolkit-purple)
+![Stripe](https://img.shields.io/badge/Stripe-Payments-blueviolet)
+![Tests](https://img.shields.io/badge/Tests-Jest%20%7C%20RTL-green)
+![Deploy](https://img.shields.io/badge/Deploy-Vercel%20%7C%20Render-black)
 
-## Available Scripts
+O **Club Clothing** é um e-commerce completo desenvolvido em **React + TypeScript**, criado nos cursos do **Full Stack Club**, mas expandido significativamente por mim com novas funcionalidades, melhorias arquiteturais, testes e deploy em produção.
 
-In the project directory, you can run:
+👉 Este projeto foi desenvolvido com foco em **boas práticas**, **arquitetura escalável**, **experiência do usuário** e **qualidade de código**, sendo hoje uma peça central do meu portfólio.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🔗 Links Importantes
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 🧠 **Repositório principal:**  
+  https://github.com/pedrofaleirosss/club-clothing.git
 
-### `npm test`
+- 🚀 **Deploy (Vercel):**  
+  https://club-clothing-tau.vercel.app
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 💳 **API de Pagamentos (Stripe):**  
+  https://github.com/pedrofaleirosss/club-clothing-stripe-api.git
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧩 Funcionalidades
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 👤 Autenticação
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Login com **email e senha**
+- Login com **Google**
+- Gerenciamento de sessão com **Firebase Authentication**
+- Proteção de rotas com **Authentication Guard**
 
-### `npm run eject`
+### 🛒 E-commerce
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Listagem de categorias e produtos
+- Carrinho de compras
+- Persistência do carrinho
+- Checkout integrado com Stripe
+- Página de confirmação de pagamento
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🧑 Minha Conta
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Tela exclusiva para o usuário autenticado
+- Opção de **deletar a conta**
+- Gerenciamento de dados do usuário
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 💳 Pagamentos
 
-## Learn More
+- Integração com **Stripe Checkout**
+- Uso de **cartões de teste**
+- API própria em Node + Express
+- Deploy da API no **Render**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 📱 Responsividade
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Layout **100% responsivo**
+- Adaptado para desktop, tablet e mobile
+
+---
+
+## 🧪 Testes
+
+- **Jest**
+- **React Testing Library**
+- Testes de componentes
+- Testes de fluxos críticos
+- Uso de **mocks** para isolamento de dependências
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### Front-end
+
+- React
+- TypeScript
+- React Router DOM
+- Styled Components
+- React Hook Form
+- Axios
+
+### Estado Global
+
+- Context API (fase inicial)
+- Redux Toolkit
+- Redux Thunk
+- Redux Persist
+- Selectors, reducers e actions
+
+### Backend / Serviços
+
+- Firebase
+  - Firestore
+  - Authentication
+- Stripe API
+- Node.js
+- Express
+
+### Testes
+
+- Jest
+- React Testing Library
+
+### Deploy
+
+- **Vercel** (Frontend)
+- **Render** (API Stripe)
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home
+
+### 🛍️ Explorar Categorias
+
+### 🛒 Carrinho
+
+### 💳 Checkout
+
+### 👤 Minha Conta
+
+---
+
+## 🚀 Diferenciais (Além do Curso)
+
+Este projeto foi além do que foi ensinado no curso:
+
+- ✅ Criação da tela **Minha Conta**
+- ✅ Implementação de **modais**
+- ✅ Rodapé personalizado
+- ✅ Exclusão de conta
+- ✅ Aumento da cobertura de testes
+- ✅ Melhorias de UX/UI
+- ✅ Deploy completo (Frontend + API)
+- ✅ Responsividade total
+
+---
+
+## 🧠 Aprendizados
+
+Durante o desenvolvimento deste projeto, aprofundei conhecimentos em:
+
+- Arquitetura de aplicações React
+- Gerenciamento de estado global
+- Integração com APIs externas
+- Autenticação e segurança
+- Testes automatizados
+- Boas práticas de código
+- Deploy em produção
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido com 💙 por [Pedro Faleiros](https://github.com/pedrofaleirosss)
+
+⭐ Se você curtiu o projeto, não esqueça de deixar uma estrela no repositório!
