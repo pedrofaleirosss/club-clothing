@@ -8,7 +8,7 @@
 ![Tests](https://img.shields.io/badge/Tests-Jest%20%7C%20RTL-green)
 ![Deploy](https://img.shields.io/badge/Deploy-Vercel%20%7C%20Render-black)
 
-O **Club Clothing** é um e-commerce completo desenvolvido em **React + TypeScript**, criado nos cursos do **Full Stack Club**, mas expandido significativamente por mim com novas funcionalidades, melhorias arquiteturais, testes e deploy em produção.
+O **Club Clothing** é um e-commerce de roupas completo desenvolvido em **React + TypeScript**, criado nos cursos do **Full Stack Club**, mas expandido significativamente por mim com novas funcionalidades, testes e deploy em produção.
 
 👉 Este projeto foi desenvolvido com foco em **boas práticas**, **arquitetura escalável**, **experiência do usuário** e **qualidade de código**, sendo hoje uma peça central do meu portfólio.
 
@@ -33,8 +33,10 @@ O **Club Clothing** é um e-commerce completo desenvolvido em **React + TypeScri
 
 - Login com **email e senha**
 - Login com **Google**
+- Cadastro de usuário
 - Gerenciamento de sessão com **Firebase Authentication**
 - Proteção de rotas com **Authentication Guard**
+- Logout
 
 ### 🛒 E-commerce
 
@@ -78,39 +80,38 @@ O **Club Clothing** é um e-commerce completo desenvolvido em **React + TypeScri
 
 ### Front-end
 
-- React
-- TypeScript
-- React Router DOM
-- Styled Components
-- React Hook Form
-- Axios
+- ⚛️ React
+- 🟦 TypeScript
+- 🔀 React Router DOM
+- 💅 Styled Components
+- 📋 React Hook Form
 
 ### Estado Global
 
-- Context API (fase inicial)
-- Redux Toolkit
-- Redux Thunk
-- Redux Persist
-- Selectors, reducers e actions
+- 🧠 Context API (fase inicial)
+- 🧰 Redux Toolkit
+- 🔄 Redux Thunk
+- 💾 Redux Persist
+- 🎲 Selectors, reducers e actions
 
 ### Backend / Serviços
 
-- Firebase
+- 🔥 Firebase
   - Firestore
   - Authentication
-- Stripe API
-- Node.js
-- Express
+- 💳 Stripe API
+- 🌐 Node.js
+- 🚀 Express
 
 ### Testes
 
-- Jest
-- React Testing Library
+- 🧪 Jest
+- 🧫 React Testing Library
 
 ### Deploy
 
-- **Vercel** (Frontend)
-- **Render** (API Stripe)
+- ▲ **Vercel** (Frontend)
+- ☁️ **Render** (API Stripe)
 
 ---
 
@@ -119,40 +120,50 @@ O **Club Clothing** é um e-commerce completo desenvolvido em **React + TypeScri
 Ao longo de todo o projeto, todos os commits seguem o padrão **Conventional Commits** e foram escritos **em inglês**.
 
 Essa padronização traz benefícios como:
-- Histórico de commits limpo e organizado
-- Melhor entendimento das mudanças realizadas
-- Facilidade para manutenção e escalabilidade do projeto
-- Clareza na identificação do tipo de mudança (feat, fix, refactor, test, chore, etc.)
+
+- ✅ Histórico de commits limpo e organizado
+- ✅ Melhor entendimento das mudanças realizadas
+- ✅ Facilidade para manutenção e escalabilidade do projeto
+- ✅ Clareza na identificação do tipo de mudança (feat, fix, refactor, test, chore, etc.)
 
 ---
 
 ## 📸 Screenshots
 
 ### 🏠 Home
+
 <img width="1919" height="950" alt="image" src="https://github.com/user-attachments/assets/dba8646b-ed01-4d42-b285-e755aaefacfb" />
 
 ### 🛍️ Explorar Categorias
+
 <img width="1916" height="948" alt="image" src="https://github.com/user-attachments/assets/324900fd-45ce-4724-ba79-8edf125a163a" />
 
 ### 🛒 Carrinho
+
 <img width="1911" height="951" alt="image" src="https://github.com/user-attachments/assets/23518d5f-d3b3-4fa0-a83c-3e447ee39de9" />
 
 ### 🙋‍♂️ Login
+
 <img width="1914" height="948" alt="image" src="https://github.com/user-attachments/assets/1da24f21-26e3-4d75-85e1-5244c6645a3b" />
 
 ### 🙂 Criar Conta
+
 <img width="1919" height="950" alt="image" src="https://github.com/user-attachments/assets/a5b9eaa9-bef9-464c-b800-0a9e74886fc9" />
 
 ### 💳 Checkout
+
 <img width="1918" height="946" alt="image" src="https://github.com/user-attachments/assets/3f566b7e-0ca9-4049-9d65-3387f7e56f09" />
 
 ### 👤 Minha Conta
+
 <img width="1919" height="949" alt="image" src="https://github.com/user-attachments/assets/c93cb792-a7f3-4087-9b06-ef744a20a021" />
 
 ### 💰 Pagamento
+
 <img width="1915" height="947" alt="image" src="https://github.com/user-attachments/assets/369da389-49d1-4e9f-baf0-e1937c202180" />
 
 ### ✅ Confirmação de Compra
+
 <img width="1918" height="949" alt="image" src="https://github.com/user-attachments/assets/680e0884-c05f-4d33-9c9c-4f32a6335c79" />
 
 ---
@@ -176,13 +187,13 @@ Este projeto foi além do que foi ensinado no curso:
 
 Durante o desenvolvimento deste projeto, aprofundei conhecimentos em:
 
-- Arquitetura de aplicações React
-- Gerenciamento de estado global
-- Integração com APIs externas
-- Autenticação e segurança
-- Testes automatizados
-- Boas práticas de código
-- Deploy em produção
+- 🌟 Arquitetura de aplicações React
+- 🌟 Gerenciamento de estado global
+- 🌟 Integração com APIs externas
+- 🌟 Autenticação e segurança
+- 🌟 Testes automatizados
+- 🌟 Boas práticas de código
+- 🌟 Deploy em produção
 
 ---
 
